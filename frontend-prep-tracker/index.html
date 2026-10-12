@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Небольшой планировщик задач для изучения Frontend: задачи, категории, приоритеты и прогресс.">
+  <title>Frontend Prep Tracker — план подготовки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Frontend Prep Tracker — главная">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span class="brand-copy">
+          <span class="brand-name">Prep<span>Tracker</span></span>
+          <span class="brand-caption">Личный учебный план</span>
+        </span>
+      </a>
+      <div class="local-badge"><span class="status-dot" aria-hidden="true"></span>Работает в браузере</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">ТВОЙ СЛЕДУЮЩИЙ ШАГ — ПРАКТИКА</p>
+          <h1 id="page-title">Учись регулярно.<br><span>Замечай прогресс.</span></h1>
+          <p class="hero-description">Собери учебные задачи в одном месте и двигайся к стажировке небольшими шагами.</p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring orbit-ring-one"></div>
+          <div class="orbit-ring orbit-ring-two"></div>
+          <div class="orbit-center"><span>✓</span></div>
+          <span class="orbit-spark spark-one">✦</span>
+          <span class="orbit-spark spark-two">✳</span>
+        </div>
+      </section>
+
+      <section class="overview" aria-label="Сводка задач">
+        <article class="stat-card stat-card-main">
+          <div class="stat-topline"><span class="stat-label">Всего задач</span><span class="stat-icon icon-violet" aria-hidden="true">▤</span></div>
+          <div class="stat-value" id="total-count">0</div>
+          <p class="stat-caption">В твоём плане</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-topline"><span class="stat-label">Выполнено</span><span class="stat-icon icon-green" aria-hidden="true">✓</span></div>
+          <div class="stat-value" id="completed-count">0</div>
+          <p class="stat-caption">Шаги уже позади</p>
+        </article>
+        <article class="stat-card progress-card">
+          <div class="stat-topline"><span class="stat-label">Общий прогресс</span><span class="stat-percent" id="progress-percent">0%</span></div>
+          <div class="progress-track" role="progressbar" aria-label="Выполнение всех задач" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar"><span id="progress-fill"></span></div>
+          <p class="stat-caption" id="progress-caption">Начни с одной небольшой задачи</p>
+        </article>
+      </section>
+
+      <section class="workspace" aria-label="Управление задачами">
+        <aside class="sidebar">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">НЕБОЛЬШИЕ ШАГИ</p>
+              <h2>Добавить задачу</h2>
+            </div>
+            <span class="heading-spark" aria-hidden="true">✦</span>
+          </div>
+          <form id="task-form" class="task-form">
+            <label for="task-title">Что нужно сделать?</label>
+            <input id="task-title" name="title" type="text" maxlength="120" placeholder="Например, повторить массивы" required autocomplete="off">
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="task-category">Категория</label>
+                <select id="task-category" name="category">
+                  <option value="javascript">JavaScript</option>
+                  <option value="html-css">HTML / CSS</option>
+                  <option value="practice">Практика</option>
+                  <option value="other">Другое</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="task-priority">Приоритет</label>
+                <select id="task-priority" name="priority">
+                  <option value="normal">Обычный</option>
+                  <option value="high">Высокий</option>
+                  <option value="low">Низкий</option>
+                </select>
+              </div>
+            </div>
+            <button class="primary-button" type="submit"><span aria-hidden="true">＋</span> Добавить задачу</button>
+            <p class="form-hint">Сохраняй задачи, которые реально можешь выполнить за один подход.</p>
+          </form>
+
+          <div class="tip-card">
+            <div class="tip-icon" aria-hidden="true">✳</div>
+            <div>
+              <h3>Совет на сегодня</h3>
+              <p>Лучше 25 минут практики каждый день, чем большой план, к которому сложно приступить.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="task-panel" aria-labelledby="tasks-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ТВОЙ ФОКУС</p>
+              <h2 id="tasks-heading">Учебные задачи <span class="heading-count" id="visible-count">0</span></h2>
+            </div>
+            <button class="text-button" id="reset-demo" type="button" title="Вернуть начальный пример задач">Сбросить демо</button>
+          </div>
+
+          <div class="task-toolbar">
+            <div class="filter-group" role="group" aria-label="Фильтр по статусу">
+              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Все</button>
+              <button class="filter-button" type="button" data-filter="active" aria-pressed="false">В процессе</button>
+              <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Готово</button>
+            </div>
+            <label class="category-filter-label" for="category-filter">Категория</label>
+            <select id="category-filter" class="category-filter" aria-label="Фильтр по категории">
+              <option value="all">Все категории</option>
+              <option value="javascript">JavaScript</option>
+              <option value="html-css">HTML / CSS</option>
+              <option value="practice">Практика</option>
+              <option value="other">Другое</option>
+            </select>
+          </div>
+
+          <ul class="task-list" id="task-list" aria-live="polite" aria-relevant="additions removals text"></ul>
+          <div class="empty-state" id="empty-state" hidden>
+            <div class="empty-illustration" aria-hidden="true">☼</div>
+            <h3 id="empty-title">Пока нет задач</h3>
+            <p id="empty-description">Добавь первую задачу через форму слева — и начни двигаться вперёд.</p>
+          </div>
+          <footer class="list-footer">
+            <span><span class="footer-dot" aria-hidden="true"></span> Изменения сохраняются автоматически</span>
+            <span id="remaining-count">Осталось: 0</span>
+          </footer>
+        </section>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>Frontend Prep Tracker</span>
+      <span>Учебный проект на HTML, CSS и JavaScript</span>
+    </footer>
+  </div>
+  <noscript><p class="noscript-message">Для работы планировщика необходимо включить JavaScript в браузере.</p></noscript>
+</body>
+</html>
