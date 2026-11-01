@@ -1,0 +1,13 @@
+{
+  "name": "internship-board",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Application tracker with deadlines and local JSON backups",
+  "scripts": {
+    "test": "node --test tests/model.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

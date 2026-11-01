@@ -1,0 +1,13 @@
+{
+  "name": "pocket-budget",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monthly expense tracker with integer monetary calculations",
+  "scripts": {
+    "test": "node --test tests/model.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

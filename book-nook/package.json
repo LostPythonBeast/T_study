@@ -1,0 +1,13 @@
+{
+  "name": "book-nook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Book catalog with asynchronous JSON loading and favorites",
+  "scripts": {
+    "test": "node --test tests/model.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

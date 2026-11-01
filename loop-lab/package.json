@@ -1,0 +1,13 @@
+{
+  "name": "loop-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Step-by-step array algorithm visualizer",
+  "scripts": {
+    "test": "node --test tests/algorithms.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

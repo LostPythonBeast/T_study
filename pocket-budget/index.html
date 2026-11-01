@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      Pocket Budget — расходы по полочкам
+    </title>
+    <meta name="description" content="Простой локальный учёт расходов и месячного лимита.">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js">
+    </script>
+  </head>
+  <body>
+    <a class="portfolio-back" href="../">← Все проекты</a>
+    <a class="skip-link" href="#main">
+      К расходам
+    </a>
+    <header>
+      <a class="brand" href="./">
+        pocket
+        <span>
+          budget
+        </span>
+      </a>
+      <span class="local">
+        Личный учёт · в вашем браузере
+      </span>
+    </header>
+    <main id="main">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">
+            ПОНЯТНЫЕ ДЕНЬГИ
+          </p>
+          <h1>
+            Расходы по полочкам.
+          </h1>
+          <p>
+            Замечайте, куда уходит бюджет. По одной записи за раз.
+          </p>
+        </div>
+        <label class="month-label">
+          Показать месяц
+          <input type="month" id="month" required min="1900-01" max="9999-12" aria-label="Месяц расходов">
+        </label>
+      </section>
+      <section class="summary" aria-label="Итоги месяца">
+        <div>
+          <p>
+            Потрачено за месяц
+          </p>
+          <strong id="spent">
+            0 ₽
+          </strong>
+          <small id="count">
+            0 записей за месяц
+          </small>
+        </div>
+        <div>
+          <p>
+            Месячный лимит
+          </p>
+          <strong id="limit">
+            Не задан
+          </strong>
+          <small>
+            вы задаёте его сами
+          </small>
+        </div>
+        <div class="remaining-panel">
+          <p>
+            Осталось
+          </p>
+          <strong id="remaining">
+            —
+          </strong>
+          <small id="budget-note">
+          </small>
+          <div class="budget-track">
+            <span id="budget-meter">
+            </span>
+          </div>
+        </div>
+      </section>
+      <div class="workspace">
+        <section class="entry-panel">
+          <p class="eyebrow">
+            ДОБАВЛЯЕМ В ИСТОРИЮ
+          </p>
+          <h2 id="form-heading">
+            Новый расход
+          </h2>
+          <form id="expense-form">
+            <label>
+              На что потратили
+              <input name="title" required maxlength="80" placeholder="Например, продукты">
+            </label>
+            <div class="form-row">
+              <label>
+                Сумма, ₽
+                <input name="amount" inputmode="decimal" required placeholder="0,00">
+              </label>
+              <label>
+                Дата
+                <input type="date" name="date" required min="1900-01-01" max="9999-12-31">
+              </label>
+            </div>
+            <label>
+              Категория
+              <select name="category">
+              </select>
+            </label>
+            <p class="error" id="form-error" role="alert">
+            </p>
+            <button id="save-expense" class="primary" type="submit">
+              Добавить расход
+            </button>
+            <button id="cancel-edit" class="text-button" type="button" hidden>
+              Отменить редактирование
+            </button>
+          </form>
+          <form id="budget-form" class="budget-form">
+            <label for="budget-amount">
+              Лимит выбранного месяца, ₽
+            </label>
+            <div>
+              <input id="budget-amount" inputmode="decimal" required placeholder="Например, 15000">
+              <button class="secondary">
+                Задать
+              </button>
+            </div>
+          </form>
+          <button id="demo" class="text-button">
+            Попробовать с примерами ↗
+          </button>
+        </section>
+        <div>
+          <section class="chart-panel">
+            <div class="section-top">
+              <h2>
+                По категориям
+              </h2>
+              <span>
+                ДОЛЯ РАСХОДОВ
+              </span>
+            </div>
+            <div id="bars">
+            </div>
+            <p id="no-chart" class="muted">
+              Добавьте расход, чтобы увидеть распределение.
+            </p>
+          </section>
+          <section class="history">
+            <div class="section-top">
+              <h2>
+                История расходов
+              </h2>
+              <label>
+                <span class="visually-hidden">
+                  Категория расходов
+                </span>
+                <select id="category-filter">
+                  <option value="">
+                    Все категории
+                  </option>
+                </select>
+              </label>
+            </div>
+            <div id="expenses">
+            </div>
+            <div id="empty" class="empty">
+              <span aria-hidden="true">
+                ₽
+              </span>
+              <h3>
+                Здесь появятся ваши записи
+              </h3>
+              <p>
+                Добавьте первый расход или смените категорию.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="feedback">
+        <p id="message" role="status" aria-live="polite">
+        </p>
+        <button id="recovery" class="text-button" hidden>
+          Скачать исходные данные
+        </button>
+      </div>
+      <footer>
+        Данные хранятся в этом браузере. Очистка данных сайта удалит историю.
+      </footer>
+    </main>
+    <noscript>
+      Для работы включите JavaScript.
+    </noscript>
+  </body>
+</html>

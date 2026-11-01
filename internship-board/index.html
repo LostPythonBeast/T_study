@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Internship Board — трекер откликов
+    </title>
+    <meta name="description" content="Личный трекер откликов на стажировки: статусы, сроки и следующие шаги.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js">
+    </script>
+  </head>
+  <body>
+    <a class="portfolio-back" href="../">← Все проекты</a>
+    <a class="skip-link" href="#main">
+      К откликам
+    </a>
+    <aside class="sidebar">
+      <a href="./" class="brand">
+        <span class="logo">
+          ib.
+        </span>
+        <span>
+          internship
+          <br>
+          <strong>
+            board
+          </strong>
+        </span>
+      </a>
+      <p class="nav-caption">
+        ЛИЧНОЕ ПРОСТРАНСТВО
+      </p>
+      <a class="nav-current" href="#main">
+        <img class="nav-icon" src="https://cdn.jsdelivr.net/npm/@tabler/icons@3.31.0/icons/outline/briefcase.svg" onerror="this.onerror=null;this.src='assets/briefcase.svg'" alt="" width="18" height="18">
+        Мои отклики
+      </a>
+      <div class="sidebar-note">
+        <span class="little-dot">
+        </span>
+        <h2>
+          Каждый отклик —
+          <br>
+          следующий шаг.
+        </h2>
+        <p>
+          Соберите свой путь к первой работе в одном месте.
+        </p>
+      </div>
+      <p class="local-note">
+        Данные в этом браузере.
+        <br>
+        Скачивайте копию, чтобы не потерять записи.
+      </p>
+    </aside>
+    <main id="main">
+      <header class="topbar">
+        <span>
+          ОТКЛИКИ НА СТАЖИРОВКИ
+        </span>
+        <span class="local-pill">
+          ●
+          &nbsp;
+          Локальное хранение
+        </span>
+      </header>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">
+            ОТ ПЕРВОГО ОТКЛИКА ДО ОФФЕРА
+          </p>
+          <h1>
+            Ваш следующий шаг.
+          </h1>
+          <p class="subtitle">
+            Компании, сроки и действия — в поле зрения.
+          </p>
+        </div>
+        <button id="new-entry" class="primary">
+          ＋ Добавить отклик
+        </button>
+      </section>
+      <section class="stats" aria-label="Статистика откликов">
+        <div>
+          <span>
+            Всего откликов
+          </span>
+          <strong id="total">
+            0
+          </strong>
+          <small>
+            ваша история поиска
+          </small>
+        </div>
+        <div>
+          <span>
+            В процессе
+          </span>
+          <strong id="active">
+            0
+          </strong>
+          <small>
+            ждут следующего шага
+          </small>
+        </div>
+        <div>
+          <span>
+            Срок прошёл
+          </span>
+          <strong id="late">
+            0
+          </strong>
+          <small>
+            стоит уточнить статус
+          </small>
+        </div>
+        <div class="offer-stat">
+          <span>
+            Офферы
+          </span>
+          <strong id="offers">
+            0
+          </strong>
+          <small>
+            новые возможности ↗
+          </small>
+        </div>
+      </section>
+      <div class="section-heading">
+        <h2>
+          Мои отклики
+          <span id="visible-count">
+            0 из 0
+          </span>
+        </h2>
+        <div class="backup-actions">
+          <button id="export" class="text-button">
+            Скачать копию ↓
+          </button>
+          <label class="file-button" for="import">
+            Восстановить ↑
+          </label>
+          <input id="import" type="file" accept=".json,application/json" class="visually-hidden">
+        </div>
+      </div>
+      <div class="filters">
+        <label class="search-label">
+          <span class="visually-hidden">
+            Поиск
+          </span>
+          <input id="search" type="search" placeholder="Поиск по компании, роли или шагу…">
+        </label>
+        <label>
+          <span class="visually-hidden">
+            Статус
+          </span>
+          <select id="filter-status">
+            <option value="">
+              Все статусы
+            </option>
+          </select>
+        </label>
+        <label>
+          <span class="visually-hidden">
+            Сортировка
+          </span>
+          <select id="sort">
+            <option value="deadline">
+              Сначала ближайший срок
+            </option>
+            <option value="company">
+              По названию компании
+            </option>
+          </select>
+        </label>
+        <button class="text-button" id="reset-filters">
+          Сбросить
+        </button>
+      </div>
+      <div class="feedback">
+        <p id="message" role="status" aria-live="polite">
+        </p>
+        <button id="undo" class="text-button" hidden>
+          Отменить удаление
+        </button>
+        <button id="recover" class="text-button" hidden>
+          Скачать исходные данные
+        </button>
+      </div>
+      <section id="cards" class="cards" aria-label="Список откликов">
+      </section>
+      <section id="empty" class="empty">
+        <span class="empty-art" aria-hidden="true">
+          ↗
+        </span>
+        <h2 id="empty-title">
+          Начните с одного отклика
+        </h2>
+        <p id="empty-text">
+          Добавьте вакансию или откройте вымышленные примеры.
+        </p>
+        <button id="demo" class="secondary">
+          Посмотреть демо
+        </button>
+      </section>
+      <footer class="bottom">
+        <span>
+          Ближайший срок
+          <strong id="nearest">
+            Пока нет ближайших сроков
+          </strong>
+        </span>
+        <span>
+          Маленькие шаги. Большие возможности.
+        </span>
+      </footer>
+    </main>
+    <dialog id="editor" aria-labelledby="editor-title">
+      <form id="entry-form">
+        <p class="eyebrow">
+          МОЙ КАРЬЕРНЫЙ МАРШРУТ
+        </p>
+        <h2 id="editor-title">
+          Новый отклик
+        </h2>
+        <label>
+          Компания
+          <span aria-hidden="true">
+            *
+          </span>
+          <input name="company" required maxlength="80" autocomplete="organization" autofocus>
+        </label>
+        <label>
+          Должность
+          <span aria-hidden="true">
+            *
+          </span>
+          <input name="role" required maxlength="100" placeholder="Например, стажёр Frontend">
+        </label>
+        <div class="form-row">
+          <label>
+            Статус
+            <select name="status">
+            </select>
+          </label>
+          <label>
+            Срок следующего шага
+            <input type="date" name="deadline" min="1900-01-01" max="9999-12-31">
+          </label>
+        </div>
+        <label>
+          Следующий шаг
+          <textarea name="next" maxlength="300" rows="2" placeholder="Что нужно сделать дальше?">
+          </textarea>
+        </label>
+        <label>
+          Ссылка на вакансию
+          <input name="url" type="url" maxlength="2000" placeholder="https://…">
+        </label>
+        <p id="form-error" class="overdue" role="alert">
+        </p>
+        <div class="dialog-actions">
+          <button id="cancel" type="button" class="secondary">
+            Отмена
+          </button>
+          <button type="submit" class="primary">
+            Сохранить
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <noscript>
+      Для работы трекера включите JavaScript.
+    </noscript>
+  </body>
+</html>

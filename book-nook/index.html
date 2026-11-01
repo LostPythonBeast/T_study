@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      Book Nook — маленькая библиотека
+    </title>
+    <meta name="description" content="Небольшой каталог русской классики с поиском и личной полкой избранного.">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js">
+    </script>
+  </head>
+  <body>
+    <a class="portfolio-back" href="../">← Все проекты</a>
+    <a class="skip-link" href="#main">
+      К каталогу
+    </a>
+    <header>
+      <a class="brand" href="./">
+        book
+        <span>
+          nook
+        </span>
+      </a>
+      <p>
+        ХОРОШАЯ ИСТОРИЯ НАЧИНАЕТСЯ С ВЫБОРА
+      </p>
+      <span class="edition">
+        ВЫПУСК 01 / КЛАССИКА
+      </span>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">
+            НЕБОЛЬШИЕ КНИГИ. БОЛЬШИЕ ИСТОРИИ.
+          </p>
+          <h1>
+            Найдите свою
+            <br>
+            <em>
+              следующую историю.
+            </em>
+          </h1>
+          <p>
+            Восемь произведений русской классики.
+            <br>
+            Выберите настроение и соберите свою полку.
+          </p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="spine one">
+            ЧИТАТЬ
+          </span>
+          <span class="spine two">
+            ЗАМЕЧАТЬ
+          </span>
+          <span class="spine three">
+            ЧУВСТВОВАТЬ
+          </span>
+        </div>
+      </section>
+      <section id="filters" class="catalog-controls" aria-label="Управление каталогом">
+        <div class="tabs">
+          <button id="all-tab" class="active" aria-pressed="true">
+            Все книги
+          </button>
+          <button id="favorites-tab" aria-pressed="false">
+            Моя полка
+            <span id="favorite-count">
+              0
+            </span>
+          </button>
+        </div>
+        <div class="filters">
+          <label class="search-label">
+            <span class="visually-hidden">
+              Поиск по названию или автору
+            </span>
+            <input type="search" id="search" placeholder="Название или автор…">
+          </label>
+          <label>
+            <span class="visually-hidden">
+              Жанр
+            </span>
+            <select id="genre">
+              <option value="">
+                Все жанры
+              </option>
+            </select>
+          </label>
+          <label>
+            <span class="visually-hidden">
+              Объём
+            </span>
+            <select id="size">
+              <option value="">
+                Любой объём
+              </option>
+              <option>
+                Короткое
+              </option>
+              <option>
+                Среднее
+              </option>
+            </select>
+          </label>
+          <label>
+            <span class="visually-hidden">
+              Сортировка
+            </span>
+            <select id="sort">
+              <option value="title">
+                По названию
+              </option>
+              <option value="author">
+                По автору
+              </option>
+            </select>
+          </label>
+          <button id="reset" class="text-button">
+            Сбросить
+          </button>
+        </div>
+      </section>
+      <div id="loading" class="status-panel" role="status">
+        Загружаем небольшую библиотеку…
+      </div>
+      <section id="load-error" class="status-panel" hidden>
+        <h2>
+          Не удалось загрузить каталог
+        </h2>
+        <p>
+          Запустите проект через Live Server и проверьте наличие data/books.json.
+        </p>
+        <button id="retry" class="primary">
+          Попробовать снова
+        </button>
+      </section>
+      <section id="results" hidden>
+        <div class="results-heading">
+          <h2>
+            Каталог
+          </h2>
+          <span id="result-count">
+          </span>
+        </div>
+        <div id="grid" class="book-grid">
+        </div>
+        <div id="empty" class="status-panel" hidden>
+          <h2 id="empty-title">
+            Ничего не найдено
+          </h2>
+          <p>
+            Добавьте книгу на полку или измените фильтры.
+          </p>
+        </div>
+      </section>
+      <p id="message" role="status" class="message" aria-live="polite">
+      </p>
+      <footer>
+        <strong>
+          Читайте в своём темпе.
+        </strong>
+        <p>
+          Это каталог для выбора, полных текстов и продаж здесь нет.
+          <br>
+          Избранное хранится только в этом браузере.
+        </p>
+      </footer>
+    </main>
+    <noscript>
+      Для каталога включите JavaScript.
+    </noscript>
+  </body>
+</html>
